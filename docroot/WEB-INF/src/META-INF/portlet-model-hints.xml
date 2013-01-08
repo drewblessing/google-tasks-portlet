@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.drewblessing.googletasks.model.PortletCredential">
+		<field name="id" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="googleId" type="String" />
+		<field name="userEmail" type="String" />
+		<field name="userPicture" type="String">
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="accessToken" type="String" />
+		<field name="refreshToken" type="String" />
+		<field name="expires" type="long" />
+	</model>
+</model-hints>

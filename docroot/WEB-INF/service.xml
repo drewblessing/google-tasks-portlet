@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+<service-builder package-path="com.drewblessing.googletasks">
+	<author>Drew A. Blessing</author>
+	<namespace>GT</namespace>
+
+	<entity name='PortletCredential' local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="id" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="googleId" type="String" />
+		<column name="userEmail" type="String" />
+		<column name="userPicture" type="String" />
+		<column name="accessToken" type="String" />
+		<column name="refreshToken" type="String" />
+		<column name="expires" type="long" />
+<!-- 		<column name="default" type="boolean" /> -->
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="userId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CompanyIdAndGoogleId" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="googleId" />
+		</finder>
+		<finder name="CompanyIdAndUserEmail" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="userEmail" />
+		</finder>
+		<finder name="CompanyIdAndUserId" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="userId" />
+		</finder>
+	</entity>
+</service-builder>
