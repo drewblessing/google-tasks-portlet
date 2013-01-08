@@ -5,6 +5,15 @@
 	<portlet>
 		<portlet-name>google-tasks</portlet-name>
 		<icon>/icon.png</icon>
+	    <instanceable>false</instanceable>
+		<ajaxable>true</ajaxable>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
+		<css-class-wrapper>google-tasks-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>google-tasks-control-panel</portlet-name>
+		<icon>/icon.png</icon>
 		<control-panel-entry-category>my</control-panel-entry-category>
 		<control-panel-entry-weight>10</control-panel-entry-weight>
 		<control-panel-entry-class>com.drewblessing.googletasks.portlet.util.GTControlPanelEntry</control-panel-entry-class>

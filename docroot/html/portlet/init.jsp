@@ -8,7 +8,7 @@
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.google.api.client.auth.oauth2.Credential" %>
-
+<%@ page import="com.google.api.services.tasks.model.TaskList" %>
 
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
 <%@ page import="com.liferay.portal.kernel.util.ListUtil" %>
@@ -23,6 +23,7 @@
 <%-- <%@ page import="com.drewblessing.googletasks.portlet.ActionUtil" %> --%>
 <%@ page import="com.drewblessing.googletasks.portlet.GoogleTasks" %>
 <%@ page import="com.drewblessing.googletasks.portlet.util.PortletConstants" %>
+<%@ page import="com.drewblessing.googletasks.portlet.util.PortletKeys" %>
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Date" %>

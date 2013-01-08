@@ -1,6 +1,7 @@
 package com.drewblessing.googletasks.portlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -21,11 +22,16 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeReque
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleRefreshTokenRequest;
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson.JacksonFactory;
+import com.google.api.services.tasks.Tasks;
+import com.google.api.services.tasks.Tasks.Tasklists;
+import com.google.api.services.tasks.model.TaskList;
+import com.google.api.services.tasks.model.TaskLists;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -167,5 +173,35 @@ public class GoogleTasks extends MVCPortlet {
 			        .setExpiresInSeconds(portletCredential.getExpires());
 			}		
 			return null;
+		}
+		
+		public static List<TaskList> getTaskLists(Credential credential) {
+			HttpTransport transport = new NetHttpTransport();
+		    JacksonFactory jsonFactory = new JacksonFactory();
+		    Tasks service = new Tasks(transport, jsonFactory, credential);			
+		    
+			List<TaskList> results = new ArrayList<TaskList>();
+			Tasklists.List request = null;
+			
+		    do {
+		      try {
+		    	  request = service.tasklists().list();
+		    	  TaskLists taskLists = service.tasklists().list().execute();
+
+		    	  results.addAll(taskLists.getItems());
+		    	  request.setPageToken(taskLists.getNextPageToken());
+		      } catch (GoogleJsonResponseException e) {
+	    	    if (e.getStatusCode() == 401) {
+	    	    	
+	    	    }
+	    	    e.printStackTrace();
+		      } catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    } while (request.getPageToken() != null &&
+		             request.getPageToken().length() > 0);
+		    
+		    return results;
 		}
 }

@@ -4,7 +4,7 @@
 	<portlet:param name="token" value="<%=portletCredential.getAccessToken() %>" />
 </portlet:actionURL>
 
-<div class="user-info-header right">
+<div class="user-info-header">
 	<aui:layout>
 		<aui:column columnWidth="75">
 			<div class=""><%=portletCredential.getUserEmail() %></div>

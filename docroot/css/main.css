@@ -1,14 +1,21 @@
 @import "compass";
 
-.google-tasks-portlet {
-	.right { float: right; }
+.google-tasks-portlet {		
+	min-height: 100px;
 	
 	.tasks-wrapper {
-		min-height: 100px;
+		.settings-msg {
+			float: left;
+			width: 60%;
+		}
+		
+		.import-export {
+			width: 50%;
+		}
 	}
 	
 	.user-info-header {
-		margin-top: 25px;
+		float: right; 
 		img {
 			width: 30px;
 		}
